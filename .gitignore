@@ -1,46 +1,119 @@
-# Ignore Unity-specific cache and build folders
+# ============================
+# Unity Generated Files
+# ============================
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
-Logs/
-MemoryCaptures/
+[Ll]ogs/
+[Mm]emoryCaptures/
 
-# Ignore auto-generated files
+# ============================
+# IDE & Editor Settings (VS, JetBrains Rider, VSCode)
+# ============================
+.vs/
+.idea/
+.vscode/
+.vscode/**
+
 *.csproj
 *.unityproj
 *.sln
+*.sln.iml
 *.suo
-*.tmp
 *.user
 *.userprefs
-*.pidb
 *.booproj
+*.pidb
+*.pidb.meta
 *.svd
-*.pdb
-*.mdb
 
-# Ignore large file types (add others as needed)
+# ============================
+# Unity Cache / Temporary / Backup Files
+# ============================
+*.stackdump
+*.bak
+*.old
+*.orig
+*.swp
+*.swo
+*.tmp
+*.prefs
+
+# ============================
+# OS Generated Files
+# ============================
+.DS_Store
+Thumbs.db
+
+# ============================
+# Firebase Specific
+# ============================
+firebase.json
+.firebaserc
+firebase-debug.log
+.firebase/
+
+# ============================
+# Crashlytics & Analytics (if integrated)
+# ============================
+crashlytics-build.properties
+
+# ============================
+# Android & Gradle Build Files
+# ============================
+.gradle/
+**/build/
+**/intermediates/
+**/generated/
+*.apk
+*.aar
+
+# ============================
+# Unity Cloud Build
+# ============================
+.cloudbuild/
+
+# ============================
+# Asset Store Tools
+# ============================
+Assets/AssetStoreTools*
+
+# ============================
+# Large Binary / Asset Files
+# ============================
 *.mp4
 *.mov
 *.avi
+*.flv
 *.zip
 *.rar
 *.7z
+*.tar
+*.gz
 *.iso
 *.exe
-*.dll
-*.apk
-*.obb
-*.wav
-*.aiff
-*.flac
-*.tga
-*.tiff
-*.psd
+*.bundle
 
-# Ignore version control folders
-.vscode/
-.idea/
-*.bak
+# ============================
+# Logs and Reports
+# ============================
+*.log
+*.report
+*.tlog
+
+# ============================
+# Node.js (for Firebase CLI)
+# ============================
+node_modules/
+
+# ============================
+# Optional Unity Features
+# ============================
+
+# Uncomment if using Addressables
+# Library/com.unity.addressables/
+
+# Uncomment if using Collaborate (Unity Teams)
+# Collab/
