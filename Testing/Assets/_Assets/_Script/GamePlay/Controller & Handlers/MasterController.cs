@@ -20,6 +20,7 @@ public class MasterController : MonoBehaviour
 
     public Action OnPause, OnResume;
     public Action<int> OnCoinClicked;
+	public Action<Coin> OnCoinCollected;
     public Action<float> OnTimerTick;
     private int totalCoinsCollected;
     public static MasterController Instance{ get; private set; }
@@ -35,16 +36,27 @@ public class MasterController : MonoBehaviour
     {
         if (isPlaying && !isPaused)
         {
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				if (isPaused)
+				{
+					ResumeGamePause();
+				}
+				else
+				{
+					GamePause();
+				}
+			}
             if (currentGameTime > 0)
-            {
-                currentGameTime -= Time.deltaTime;
-                OnTimerTick?.Invoke(currentGameTime);
+			{
+				currentGameTime -= Time.deltaTime;
+				OnTimerTick?.Invoke(currentGameTime);
 
-            }
-            else
-            {
-                isPlaying = false;
-            }
+			}
+			else
+			{
+				isPlaying = false;
+			}
         }
     }
     private IEnumerator StartRoutine()
@@ -100,7 +112,10 @@ public class MasterController : MonoBehaviour
         totalCoinsCollected++;
         OnCoinClicked?.Invoke(totalCoinsCollected);
     }
-
+	public void OnCoinCollect(Coin coin)
+	{
+		OnCoinCollected?.Invoke(coin);
+	}
     public bool IsGamePlaying()
     {
         return isPlaying;

@@ -12,25 +12,25 @@ public class Coin : MonoBehaviour,IPooledObject,IPointerDownHandler,IPointerUpHa
     [SerializeField] private RectTransform coinRect;
     
     private float currentLiveTimer;
-    private Transform orignalTransform;
+    private Transform originalTransform;
+	private MasterController masterController;
     private void Start()
-    {
-        currentLiveTimer = maxLiveTime;
-    }
-    public void DestroyMySelfWithDelay(float delay = 0)
-    {
-
-    }
+	{
+		masterController = MasterController.Instance;
+		currentLiveTimer = maxLiveTime;
+	}
+    public void DestroyMySelfWithDelay(float delay = 0){}
 
     public void DestroyNow()
     {
-        transform.SetParent(orignalTransform);
+		masterController?.OnCoinCollect(this);
+        transform.SetParent(originalTransform);
         gameObject.SetActive(false);
     }
     private void Update() {
-        if (MasterController.Instance != null)
+        if (masterController != null)
         {
-            if (MasterController.Instance.IsGamePlaying() && !MasterController.Instance.IsGamePaused())
+            if (masterController.IsGamePlaying() && !masterController.IsGamePaused())
             {
                 if (currentLiveTimer > 0)
                 {
@@ -46,7 +46,7 @@ public class Coin : MonoBehaviour,IPooledObject,IPointerDownHandler,IPointerUpHa
     }
     public void SetOrignalParent(Transform orignalTransform)
     {
-        this.orignalTransform = orignalTransform;
+        this.originalTransform = orignalTransform;
     }
     public void OnObjectReuse()
     {
@@ -61,28 +61,27 @@ public class Coin : MonoBehaviour,IPooledObject,IPointerDownHandler,IPointerUpHa
     {
         coinRect.SetParent(gameBoudiry, false);
         coinRect.anchoredPosition = spawnPosition;
-        Debug.Log("Coin Spawning: ");
     }
 
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (MasterController.Instance.IsGamePaused())
+        if (masterController.IsGamePaused())
         {
             return;
         }
         AudioManager.Instance?.PlayOneShotMusic(Sounds.SoundType.CoinClicked);
         selfCanvasGroup.raycastTarget = false;
-        MasterController.Instance?.CoinClicked();
+        masterController?.CoinClicked();
         coinRect.DOSizeDelta(Vector2.zero, 0.1f, false).SetEase(Ease.InSine).onComplete += ()=>
         {
+#if UNITY_ANDROID
+			Handheld.Vibrate();
+#endif
             currentLiveTimer = 0;
             DestroyNow();
         };
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("Pointer Down");
-    }
+    public void OnPointerDown(PointerEventData eventData) {}
 }

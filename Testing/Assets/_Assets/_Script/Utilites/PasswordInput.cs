@@ -17,16 +17,18 @@ public class PasswordInput : MonoBehaviour
         hide = !hide;
         if (passwordInput != null)
         {
-            if (hide)
-            {
-                eyeImage.sprite = hideSprite;
-                passwordInput.inputType = TMP_InputField.InputType.Password;
-            }
-            else
-            {
-                eyeImage.sprite = showSprite;
-                passwordInput.inputType = TMP_InputField.InputType.Standard;
-            }
+			if (hide)
+			{
+				eyeImage.sprite = hideSprite;
+				// passwordInput.inputType = TMP_InputField.InputType.Password;
+				passwordInput.contentType = TMP_InputField.ContentType.Password;/// Instructed...
+			}
+			else
+			{
+				eyeImage.sprite = showSprite;
+				// passwordInput.inputType = TMP_InputField.InputType.Standard;
+				passwordInput.contentType = TMP_InputField.ContentType.Standard;// Instructed...
+			}
             passwordInput.ForceLabelUpdate();
 
         }

@@ -24,24 +24,31 @@ namespace Abhishek.Utils {
         [SerializeField] private Sprite[] loadingBarSpriteArray;
         [SerializeField] private SceneIndex currentLevel;
         public static bool showLevel;
-        // public static LevelLoader instance {get;private set;}
         public static bool isReset{get;private set;}
-        protected override void Awake(){
+		protected override void Awake()
+		{
 			base.Awake();
-            #if UNITY_EDITOR
-                Debug.unityLogger.logEnabled = true;
-            #else
-                Application.targetFrameRate = 60;
-                Debug.unityLogger.logEnabled = false;
-            #endif
-            
-            if(loadingScreen == null){
-                loadingScreen = transform.Find("loadingScreen").gameObject;
-            }
-        }        
-        public void PlayNextLevel(){
-            SwitchScene(currentLevel);
+#if UNITY_EDITOR
+			Debug.unityLogger.logEnabled = true;
+#else
+			Application.targetFrameRate = 60;
+			Debug.unityLogger.logEnabled = false;
+#endif
+
+			if (loadingScreen == null)
+			{
+				loadingScreen = transform.Find("loadingScreen").gameObject;
+			}
+			
         }
+		private void Start()
+		{
+			AudioManager.Instance.PlayMusic(Sounds.SoundType.BGM);
+		}
+		public void PlayNextLevel()
+		{
+			SwitchScene(currentLevel);
+		}
         public void PlayNextLevel(SceneIndex loadToScene){
             SwitchScene(loadToScene);
         }        
@@ -53,6 +60,7 @@ namespace Abhishek.Utils {
         
         private IEnumerator GetLoadSceneProgress(SceneIndex sceneToLoad) {
             int random = UnityEngine.Random.Range(0, loadingBarSpriteArray.Length);
+			AudioManager.Instance.PauseMusic(Sounds.SoundType.BGM);
             loadingBar.sprite = loadingBarSpriteArray[random];
 
             loadingScreen.SetActive(true);
@@ -67,6 +75,7 @@ namespace Abhishek.Utils {
             }
 
             yield return StartCoroutine(FadeLoadingScreen(false));
+			AudioManager.Instance.PlayMusic(Sounds.SoundType.BGM);
             loadingScreen.SetActive(false);
         }
 

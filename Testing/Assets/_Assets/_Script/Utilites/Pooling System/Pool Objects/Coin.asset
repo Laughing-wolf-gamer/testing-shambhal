@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Coin
   m_EditorClassIdentifier: 
   prefabs: {fileID: 1679404385927950227, guid: 53fcb3433cecda14ba3300783c75aeaa, type: 3}
-  size: 120
+  size: 20

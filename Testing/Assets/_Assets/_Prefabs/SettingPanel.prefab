@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameDataSO: {fileID: 11400000, guid: a79ed0ad940beb94494f0229566e4213, type: 2}
-  spacing: {x: 0, y: -85}
+  spacing: {x: 0, y: -60}
   rotationDuration: 0.3
   rotationEase: 1
   expandDuration: 0.3

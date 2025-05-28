@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Button Click
   m_EditorClassIdentifier: 
   soundType: 0
-  audioClip: {fileID: 8300000, guid: a7b98ba91e339244485806d36da4331e, type: 3}
+  audioClip: {fileID: 8300000, guid: 539cfb1d46aa7014d8aaec39e083e19f, type: 3}
   isLooping: 0
   playOnAwake: 0
   playonShot: 1

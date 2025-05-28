@@ -35,7 +35,7 @@ namespace Abhishek.Utils {
         {
             if (gameDataSO != null)
             {
-                MuteMusic(!gameDataSO.GetMusicState());
+                MuteMusic(!gameDataSO.GetSoundState());
                 MuteSFX(!gameDataSO.GetSoundState());
                 
             }
@@ -70,16 +70,20 @@ namespace Abhishek.Utils {
                 }
             }
         }
-        public void PlayOneShotMusic(Sounds.SoundType soundType){
-            if(AudioManager.Instance != null){
-                Sounds s = Array.Find(sounds ,s => s.soundType == soundType);
-                if(s != null){
-                    if(s.source.clip != null){
-                        s.source.PlayOneShot(s.audioClip);
-                    }
-                }
-            }
-        }
+        public void PlayOneShotMusic(Sounds.SoundType soundType)
+		{
+			if (AudioManager.Instance != null)
+			{
+				Sounds s = Array.Find(sounds, s => s.soundType == soundType);
+				if (s != null)
+				{
+					if (s.source.clip != null)
+					{
+						s.source.PlayOneShot(s.audioClip);
+					}
+				}
+			}
+		}
         public void StopAudio(Sounds.SoundType soundType){
             Sounds s = Array.Find(sounds ,s => s.soundType == soundType);
             s.source.Stop();

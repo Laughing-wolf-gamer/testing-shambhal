@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: coin Click
   m_EditorClassIdentifier: 
   soundType: 1
-  audioClip: {fileID: 8300000, guid: 13e08a6f9cde78543990c86964ce6300, type: 3}
+  audioClip: {fileID: 8300000, guid: 7c8705a49104b0b4aa416a32688576e2, type: 3}
   isLooping: 0
   playOnAwake: 0
   playonShot: 1
