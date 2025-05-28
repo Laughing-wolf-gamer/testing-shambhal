@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinSpawnControler : MonoBehaviour
 {
     [SerializeField] private RectTransform gameBoudiry;
-    [SerializeField] private Vector2 coinSizeDelta;
+    [SerializeField] private Vector2 coinSizeDelta = new Vector2(140, 140);
 
     [SerializeField] private MasterController masterController;
     [SerializeField] private float maxSpawnDelay = 2;
@@ -32,7 +32,7 @@ public class CoinSpawnControler : MonoBehaviour
 
 	private void Update()
 	{
-		if (masterController.IsGamePlaying())
+		if (masterController.IsGamePlaying() || !masterController.IsGamePaused())
 		{
 			if (currentSpawnTime > 0)
 			{

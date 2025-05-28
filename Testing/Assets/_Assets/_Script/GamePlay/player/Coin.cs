@@ -54,7 +54,7 @@ public class Coin : MonoBehaviour,IPooledObject,IPointerDownHandler,IPointerUpHa
         currentLiveTimer = maxLiveTime;
         selfCanvasGroup.raycastTarget = true;
         coinRect.sizeDelta = Vector2.zero;
-        coinRect.DOSizeDelta(new Vector2(100, 100), 0.1f, false).SetEase(Ease.OutSine);
+        coinRect.DOSizeDelta(new Vector2(140, 140), 0.4f, false).SetEase(Ease.OutBack);
     }
 
     public void setPosition(RectTransform gameBoudiry, Vector2 spawnPosition)
@@ -73,7 +73,7 @@ public class Coin : MonoBehaviour,IPooledObject,IPointerDownHandler,IPointerUpHa
         AudioManager.Instance?.PlayOneShotMusic(Sounds.SoundType.CoinClicked);
         selfCanvasGroup.raycastTarget = false;
         masterController?.CoinClicked();
-        coinRect.DOSizeDelta(Vector2.zero, 0.1f, false).SetEase(Ease.InSine).onComplete += ()=>
+        coinRect.DOSizeDelta(Vector2.zero, 0.4f, false).SetEase(Ease.InBack).onComplete += ()=>
         {
 #if UNITY_ANDROID
 			Handheld.Vibrate();
